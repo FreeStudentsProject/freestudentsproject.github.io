@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Student Defense Network</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .neon-text {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid var(--neon-cyan);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .btn-neon {
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .btn-neon:hover {
+            background: var(--neon-cyan);
+            color: black;
+        }
+
+        .qr-box {
+            border: 2px solid var(--neon-cyan);
+            padding: 10px;
+            background: black;
+        }
+
+        .disclaimer {
+            border-left: 3px solid var(--neon-cyan);
+            background: #001015;
+            color: var(--text-secondary);
+        }
+
+        .flag-btn {
+            background: none;
+            border: 1px solid var(--neon-cyan);
+            color: var(--text-primary);
+            margin: 5px;
+            padding: 8px 15px;
+            transition: all 0.3s;
+        }
+
+        .flag-btn:hover {
+            background: var(--neon-cyan);
+            color: black;
+        }
+
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-neon-cyan">
+        <div class="container">
+            <a class="navbar-brand neon-text" href="#">STUDENT DEFENSE</a>
+            <div class="d-flex align-items-center">
+                <div class="flag-group me-3">
+                    <button class="flag-btn" data-lang="en">🏴 English</button>
+                    <button class="flag-btn" data-lang="ar">🇦🇪 العربية</button>
+                    <button class="flag-btn" data-lang="es">🇪🇸 Español</button>
+                    <button class="flag-btn" data-lang="pt">🇵🇹 Português</button>
+                    <button class="flag-btn" data-lang="fr">🇫🇷 Français</button>
+                    <button class="flag-btn" data-lang="zh">🇨🇳 中文</button>
+                    <button class="flag-btn" data-lang="ru">🇷🇺 Русский</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5 text-center">
+        <div class="container py-5">
+            <h1 class="neon-text mb-4" data-i18n="title">PROTECT CAMPUS RIGHTS</h1>
+            <p class="lead mb-4" data-i18n="description">Defend student activists fighting for academic freedom</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#transparency" class="btn btn-outline-info btn-lg" data-i18n="verifyButton">Track Funding</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="py-5">
+        <div class="container">
+            <h2 class="neon-text text-center mb-5" data-i18n="donateTitle">Student Defense Fund</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-graduation-cap fa-3x neon-text mb-3"></i>
+                            <h4 class="card-title" data-i18n="anonymousDonations"></h4>
+                            <div class="qr-box my-3 mx-auto">
+                                <div id="xmr-qr"></div>
+                            </div>
+                            <code class="d-block mb-3" id="xmr-address">48jewbtxe4jU3MnHzJReMqG4JGSB4YF7QeqP6JkKBqB4X2kcdsZ5rbVgLiDRLNERUwD5R7HjUWZFYkU3ij1BETA1M4d1q9</code>
+                            <button class="btn btn-neon mb-3" onclick="copyXmrAddress()">
+                                <i class="fas fa-copy"></i> <span data-i18n="copyAddress">Copy Address</span>
+                            </button>
+                            <div class="disclaimer p-3 mt-3 text-start">
+                                <small data-i18n="disclaimer">
+                                    <i class="fas fa-exclamation-triangle neon-text"></i>
+                                    100% of funds support student legal defense
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="transparency" class="py-5 bg-black">
+        <div class="container">
+            <h2 class="neon-text text-center mb-5" data-i18n="transparencyTitle">Funding Transparency</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-balance-scale fa-3x neon-text mb-3"></i>
+                    <h4 data-i18n="viewWallet">Legal Advocacy</h4>
+                    <p data-i18n="monitorDonations">Track all transactions</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-user-shield fa-3x neon-text mb-3"></i>
+                    <h4 data-i18n="legalCompliance">Student Protection</h4>
+                    <p data-i18n="fundsManaged">Funds managed securely</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-book-open fa-3x neon-text mb-3"></i>
+                    <h4 data-i18n="publicLedger">Public Ledger</h4>
+                    <p data-i18n="annualReports">View blockchain records</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+    <script>
+        // Configuration
+        const xmrAddress = "48jewbtxe4jU3MnHzJReMqG4JGSB4YF7QeqP6JkKBqB4X2kcdsZ5rbVgLiDRLNERUwD5R7HjUWZFYkU3ij1BETA1M4d1q9";
+
+        // Translations
+        const translations = {
+            en: {
+                title: "PROTECT CAMPUS RIGHTS",
+                description: "Defend student activists fighting against genocide and bigotry",
+                donateTitle: "Student's Legal Aid Fund",
+                anonymousDonations: "Anonymous Donations",
+                copyAddress: "Copy Address",
+                disclaimer: "100% of funds support the legal defense of students in the United States who have been wrongfully charged for exercising their 1st amendment rights",
+                transparencyTitle: "Support Campus Freedom",
+                viewWallet: "Legal Advocacy",
+                monitorDonations: "Supporting student defense expenditures",
+                legalCompliance: "Student Protection",
+                fundsManaged: "Funds are not directly converted into USD",
+                publicLedger: "Public Accountability",
+                annualReports: "Viewable on the blockchain",
+                verifyButton: "Track Funding"
+            },
+            ar: {
+                title: "احمِ حقوق الحرم الجامعي",
+                description: "دافع عن الطلاب النشطاء الذين يقاتلون ضد الإبادة الجماعية والتعصب",
+                donateTitle: "صندوق المساعدة القانونية للطلاب",
+                anonymousDonations: "تبرعات مجهولة",
+                copyAddress: "نسخ العنوان",
+                disclaimer: "يتم تخصيص 100٪ من الأموال لدعم الدفاع القانوني عن الطلاب في الولايات المتحدة الذين وُجهت إليهم تهم زوراً لممارستهم حقوق التعديل الأول",
+                transparencyTitle: "ادعم حرية الحرم الجامعي",
+                viewWallet: "الدعوة القانونية",
+                monitorDonations: "دعم نفقات الدفاع عن الطلاب",
+                legalCompliance: "حماية الطلاب",
+                fundsManaged: "لا يتم تحويل الأموال مباشرة إلى الدولار الأمريكي",
+                publicLedger: "المساءلة العامة",
+                annualReports: "مرئية على البلوكشين",
+                verifyButton: "تتبع التمويل"
+            },
+            es: {
+                title: "PROTEGE LOS DERECHOS DEL CAMPUS",
+                description: "Defiende a los estudiantes activistas que luchan contra el genocidio y el odio",
+                donateTitle: "Fondo Legal Estudiantil",
+                anonymousDonations: "Donaciones Anónimas",
+                copyAddress: "Copiar Dirección",
+                disclaimer: "El 100% de los fondos apoya la defensa legal de estudiantes en EE.UU. acusados injustamente por ejercer sus derechos de la Primera Enmienda",
+                transparencyTitle: "Apoya la Libertad en el Campus",
+                viewWallet: "Defensa Legal",
+                monitorDonations: "Apoyando los gastos legales estudiantiles",
+                legalCompliance: "Protección Estudiantil",
+                fundsManaged: "Los fondos no se convierten directamente a USD",
+                publicLedger: "Responsabilidad Pública",
+                annualReports: "Visible en la blockchain",
+                verifyButton: "Rastrear Fondos"
+            },
+            pt: {
+                title: "PROTEJA OS DIREITOS NO CAMPUS",
+                description: "Defenda estudantes ativistas que lutam contra o genocídio e o preconceito",
+                donateTitle: "Fundo de Assistência Jurídica Estudantil",
+                anonymousDonations: "Doações Anônimas",
+                copyAddress: "Copiar Endereço",
+                disclaimer: "100% dos fundos apoiam a defesa legal de estudantes nos EUA que foram acusados injustamente por exercerem seus direitos da Primeira Emenda",
+                transparencyTitle: "Apoie a Liberdade no Campus",
+                viewWallet: "Advocacia Legal",
+                monitorDonations: "Apoio às despesas de defesa dos estudantes",
+                legalCompliance: "Proteção Estudantil",
+                fundsManaged: "Os fundos não são convertidos diretamente em USD",
+                publicLedger: "Responsabilidade Pública",
+                annualReports: "Visível na blockchain",
+                verifyButton: "Rastrear Financiamento"
+            },
+            fr: {
+                title: "PROTÉGEZ LES DROITS DU CAMPUS",
+                description: "Défendez les étudiants militants contre le génocide et le sectarisme",
+                donateTitle: "Fonds d'Aide Juridique Étudiante",
+                anonymousDonations: "Dons Anonymes",
+                copyAddress: "Copier l'Adresse",
+                disclaimer: "100 % des fonds soutiennent la défense juridique des étudiants accusés à tort pour avoir exercé leur droit à la liberté d'expression aux États-Unis",
+                transparencyTitle: "Soutenez la Liberté sur le Campus",
+                viewWallet: "Défense Juridique",
+                monitorDonations: "Soutien aux frais de défense des étudiants",
+                legalCompliance: "Protection des Étudiants",
+                fundsManaged: "Les fonds ne sont pas convertis directement en USD",
+                publicLedger: "Responsabilité Publique",
+                annualReports: "Visible sur la blockchain",
+                verifyButton: "Suivre le Financement"
+            },
+            zh: {
+                title: "保护校园权利",
+                description: "捍卫反对种族灭绝和偏见的学生活动人士",
+                donateTitle: "学生法律援助基金",
+                anonymousDonations: "匿名捐款",
+                copyAddress: "复制地址",
+                disclaimer: "100% 的资金用于支持在美国因行使第一修正案权利而被错误指控的学生的法律辩护",
+                transparencyTitle: "支持校园自由",
+                viewWallet: "法律倡导",
+                monitorDonations: "支持学生辩护支出",
+                legalCompliance: "学生保护",
+                fundsManaged: "资金不会直接兑换为美元",
+                publicLedger: "公共问责",
+                annualReports: "可在区块链上查看",
+                verifyButton: "追踪资金"
+            },
+            ru: {
+                title: "ЗАЩИТИТЕ ПРАВА СТУДЕНТОВ",
+                description: "Защищайте студентов-активистов, борющихся с геноцидом и ненавистью",
+                donateTitle: "Фонд Правовой Помощи Студентам",
+                anonymousDonations: "Анонимные Пожертвования",
+                copyAddress: "Скопировать Адрес",
+                disclaimer: "100% средств направляются на юридическую защиту студентов в США, ошибочно обвинённых за реализацию своих прав по Первой поправке",
+                transparencyTitle: "Поддержите Свободу в Кампусе",
+                viewWallet: "Юридическая Поддержка",
+                monitorDonations: "Финансирование защиты студентов",
+                legalCompliance: "Защита Студентов",
+                fundsManaged: "Средства не конвертируются напрямую в доллары США",
+                publicLedger: "Публичная Отчётность",
+                annualReports: "Доступно в блокчейне",
+                verifyButton: "Отслеживать Финансирование"
+            }
+        };
+
+        // Core Functions
+        function copyXmrAddress() {
+            navigator.clipboard.writeText(xmrAddress)
+                .then(() => alert("Address copied to clipboard!"))
+                .catch(err => console.error("Copy failed:", err));
+        }
+
+        function applyTranslations(lang) {
+            const translation = translations[lang] || translations.en;
+            
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                el.textContent = translation[key] || "";
+            });
+            
+            // RTL Support
+            document.body.classList.toggle("rtl", lang === "ar");
+            document.documentElement.lang = lang;
+        }
+
+        // Initialization
+        document.addEventListener("DOMContentLoaded", () => {
+            // QR Code Generation
+            new QRCode(document.getElementById("xmr-qr"), {
+                text: xmrAddress,
+                width: 180,
+                height: 180,
+                colorDark: "#00f3ff",
+                colorLight: "#000000"
+            });
+
+            // Language Switching
+            document.querySelectorAll(".flag-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const lang = this.dataset.lang;
+                    applyTranslations(lang);
+                });
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Initial translation
+            applyTranslations("en");
+        });
+    </script>
+</body>
+</html>
